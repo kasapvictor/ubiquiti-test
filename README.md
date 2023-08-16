@@ -1,4 +1,4 @@
-# Mail Service
+# Ubiquiti (test)
 
 #### Help
 ```bash
@@ -17,10 +17,6 @@ make install-yarn # yarn install
 ```bash
 # start server (default port 4000) // make start PORT=4040
 make start # npx vite --host 0.0.0.0 --port 4000
-```
-```bash
-➜  Local:   https://wms.digitalbutlers.me:4000/
-➜  Network: https://192.168.100.22:4000/
 ```
 
 #### Preview
