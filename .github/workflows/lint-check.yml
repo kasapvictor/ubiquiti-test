@@ -1,0 +1,17 @@
+name: ESLint
+
+on:
+  push:
+    branched: [main, develop]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: 🚀 Install
+        run: make install-yarn
+
+      - name: 🔎 Checking code style ...
+        run: make lint

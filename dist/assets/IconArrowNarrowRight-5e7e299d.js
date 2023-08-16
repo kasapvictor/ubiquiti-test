@@ -1,0 +1,1 @@
+import{q as r}from"./index-ed74213a.js";var a=r("arrow-narrow-right","IconArrowNarrowRight",[["path",{d:"M5 12l14 0",key:"svg-0"}],["path",{d:"M15 16l4 -4",key:"svg-1"}],["path",{d:"M15 8l4 4",key:"svg-2"}]]);export{a as I};

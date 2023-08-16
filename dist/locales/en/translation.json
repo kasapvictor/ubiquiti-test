@@ -1,0 +1,125 @@
+{
+  "TODO": {
+    "1": "Расставить все переводы: общие | виджеты | страницы"
+  },
+  "common": {
+    "company-name": "VMS",
+    "page-breadcrumbs": {
+      "1": "Choose website",
+      "2": "Choose form",
+      "3": "Choose template",
+      "4": "Setup"
+    },
+    "button": {
+      "add": "Add",
+      "addSite": "Add website",
+      "faq": "FAQs",
+      "save-changes": "Save changes",
+      "save": "Save",
+      "cancel-subscribe": "Cancel subscription",
+      "cancel": "Cancel",
+      "change": "Change",
+      "add-account": "Add account",
+      "choose-cms": "Choose CMS",
+      "change-template": "Change template",
+      "from-cms": "From CMS",
+      "from-form": "From form",
+      "remove": "Remove"
+    }
+  },
+  "auth": {
+    "name": {
+      "label": "Name",
+      "placeholder": "Holly Molly"
+    },
+    "email": {
+      "label": "Email",
+      "error": "Invalid email",
+      "placeholder": "molly@holly.com"
+    },
+    "password": {
+      "label": "Password",
+      "error": "Minimum {{count}} characters",
+      "placeholder": "Minimum {{count}} characters",
+      "confirm": {
+        "label": "Password confirm",
+        "error": "Passwords are not the same",
+        "placeholder": "Password confirm"
+      }
+    },
+    "remember": {
+      "label": "Trust this device"
+    },
+    "agreement": "By signing up, you agree to the <0>linkTerms</0> and <1>linkPrivacy</1>.",
+    "sign-up": {
+      "title": "Create account",
+      "subtitle": "Do you have an account?",
+      "submit": "Sign up"
+    },
+    "sign-in": {
+      "title": "Login",
+      "subtitle": "Do not have an account yet?",
+      "submit": "Sign in",
+      "success-title": "Great!",
+      "success-text": "You are logged in"
+    },
+    "verify": {
+      "title": "Verify email",
+      "subtitle": "A PIN has been sent to your email. Please check your email and enter the PIN below. The PIN code time to live is 5 minutes.",
+      "error": "Incomplete",
+      "submit": "Verify",
+      "resend": "Resend",
+      "resend-ok": "Code has been sent",
+      "notice": "If you have not received an email with a PIN please press resend request below.",
+      "success-title": "Success",
+      "success-text": "Account Verified"
+    },
+    "password-reset": {
+      "title": "Forgot password?",
+      "subtitle": "No worries, we’ll send you reset instructions.",
+      "notice": "If you have not received an email with a PIN please press resend request below.",
+      "submit": "Reset",
+      "back-to": "Back to ",
+      "prev": "Back",
+      "next": "Next step",
+      "resend": "Resend PIN",
+      "resend-ok": "Code has been sent",
+      "password": {
+        "label": "New password",
+        "error": "Minimum {{count}} characters",
+        "placeholder": "Minimum {{count}} characters",
+        "confirm": {
+          "label": "New password confirm",
+          "error": "Passwords are not the same",
+          "placeholder": "Password confirm"
+        }
+      }
+    },
+    "new-email": {},
+    "new-password": {},
+    "error": {
+      "401": "Login or password is incorrect",
+      "422": "The email has already been taken",
+      "419": "Error 419"
+    }
+  },
+
+  "faq": {
+    "1": "Colors, fonts, shadows and many other parts are <strong>customizable</strong> to fit your design needs",
+    "2": "Configure <strong>components</strong> appearance and behavior with vast amount of settings or overwrite any part of component styles",
+    "3": "With new <code>:focus-visible</code> pseudo-class focus ring <mark>appears</mark> only when user navigates with keyboard"
+  },
+
+  "page": {
+    "home": {
+      "title": "Hello Home Page (i18next)",
+      "title2": "Hello2"
+    },
+    "not-found": {
+      "title": "404",
+      "subtitle": "Something went wrong...",
+      "description": "Regrettably, this is simply a 404 error page. It's possible that you've entered the URL incorrectly, or the page has been relocated to a different address.",
+      "link": "Go home"
+    }
+  }
+}

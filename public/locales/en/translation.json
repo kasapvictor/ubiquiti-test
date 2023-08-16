@@ -1,0 +1,16 @@
+{
+  "base": {
+    "loading": "Loading..."
+  },
+  "page":{
+    "home": {
+      "title": "Hello"
+    },
+    "not-found": {
+      "title": "Not found",
+      "subtitle": "Sorry",
+      "description": "=(",
+      "link": "Main Page"
+    }
+  }
+}

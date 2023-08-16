@@ -1,0 +1,1 @@
+import{k as r,l as s,W as n}from"./index-ed74213a.js";import{T as t}from"./Title-f1bbc2af.js";const c=({children:o,title:e})=>r.jsxs(s,{justify:"center",align:"center",direction:"column",gap:"md",children:[r.jsx(n,{}),e&&r.jsx(t,{order:1,children:e}),o]});export{c as H};
