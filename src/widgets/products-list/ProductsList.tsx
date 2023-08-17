@@ -4,11 +4,10 @@ import { Box, createStyles, Text } from '@mantine/core';
 
 import { ProductsTopBar } from '@widgets/products-list/ProductsTopBar';
 
-import { useQueryProducts } from '@entities/products';
+import { useQueryProducts, Product } from '@entities/products';
 
 import { useTranslate } from '@shared/hooks';
 
-import { Product } from './Product';
 import { ProductsViewMode } from './types';
 
 // NOTE
@@ -61,7 +60,14 @@ export const ProductsList = () => {
           [classes.productsGrid]: viewMode === ProductsViewMode.Grid,
         })}>
         {products.data.devices.map((device) => (
-          <Product key={device.id} device={device} />
+          <Box
+            key={device.id}
+            className={cx({
+              [classes.productRow]: viewMode === ProductsViewMode.List,
+              [classes.productCard]: viewMode === ProductsViewMode.Grid,
+            })}>
+            <Product deviceId={device.id} />
+          </Box>
         ))}
       </Box>
     </Box>
@@ -72,13 +78,19 @@ const useStyles = createStyles(() => {
   return {
     products: {
       display: 'grid',
+      paddingLeft: '3.59rem',
+      paddingRight: '3.59rem',
     },
-
-    productsList: {
-      background: 'red',
-    },
+    productsList: {},
     productsGrid: {
-      background: 'green',
+      gap: '1.5rem',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(14.5625rem, 1fr))',
+    },
+    productCard: {
+      height: '14.5625rem',
+    },
+    productRow: {
+      height: 'auto',
     },
   };
 });

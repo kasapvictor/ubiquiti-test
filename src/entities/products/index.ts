@@ -1,2 +1,3 @@
-export { useQueryProducts } from './useQueryProducts';
-export * from './types';
+export { useQueryProducts } from './model/useQueryProducts';
+export * from './model/types';
+export { Product } from './ui/Product';
