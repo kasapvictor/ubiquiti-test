@@ -7,3 +7,7 @@ export enum METHOD {
   PUT = 'PUT',
   DELETE = 'DELETE',
 }
+
+export enum QUERY_KEY {
+  DEVICES = 'devices',
+}

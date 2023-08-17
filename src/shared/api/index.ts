@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import axios, { Method } from 'axios';
 
-import { apiPrivate } from '@shared/config/api';
+import { api } from '@shared/config/api';
 import { log } from '@shared/lib';
 
 interface ServerError {
@@ -36,7 +36,7 @@ export const apiRequest = async <D = Record<string, unknown>>({
 }: ApiRequestOptions<D>) => {
   try {
     const { method = 'post', ...options } = props;
-    const response = await apiPrivate({ method, ...options });
+    const response = await api({ method, ...options });
 
     if (debug) {
       log(response);

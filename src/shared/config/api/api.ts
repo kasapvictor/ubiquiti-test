@@ -6,6 +6,7 @@ export const api = axios.create({
   baseURL: BASE_API_URL as string,
 });
 
+// for authorizations queries
 export const apiPrivate = axios.create({
   baseURL: BASE_API_URL as string,
   headers: { 'Content-Type': 'application/json' },

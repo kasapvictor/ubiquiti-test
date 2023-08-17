@@ -1,6 +1,7 @@
 {
   "base": {
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "no-content": "No content"
   },
   "page":{
     "home": {
