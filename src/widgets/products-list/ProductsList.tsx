@@ -74,7 +74,7 @@ export const ProductsList = () => {
   );
 };
 
-const useStyles = createStyles(() => {
+const useStyles = createStyles((theme) => {
   return {
     products: {
       display: 'grid',
@@ -91,6 +91,10 @@ const useStyles = createStyles(() => {
     },
     productRow: {
       height: 'auto',
+      paddingTop: theme.spacing.xs,
+      paddingBottom: theme.spacing.xs,
+      borderTop: `1px solid ${theme.colors.gray[1]}`,
+      borderBottom: `1px solid ${theme.colors.gray[1]}`,
     },
   };
 });
