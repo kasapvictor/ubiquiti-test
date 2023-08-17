@@ -11,12 +11,8 @@ export const theme: MantineThemeOverride = {
     light: 9,
     dark: 7,
   },
-  fontSizes: {
-    '2xl': '1.5rem',
-  },
-  shadows: {
-    '2xl': '0 0.5rem 3.125rem rgba(0, 0, 0, 0.05)',
-  },
+  fontSizes: {},
+  shadows: {},
   spacing: {
     '2': '0.125rem',
     '4': '0.25rem',
@@ -28,8 +24,7 @@ export const theme: MantineThemeOverride = {
   },
   colors: {
     brand: ['#EDF2FF', '#DBE4FF', '#BAC8FF', '#91A7FF', '#748FFC', '#5C7CFA', '#4C6EF5', '#4263EB', '#3B5BDB', '#364FC7'],
-    red: ['#fff0f0', '#ffddde', '#ffc0c2', '#ff9497', '#ff575b', '#ff2329', '#ed0006', '#d70005', '#b10307', '#920a0d'],
-    green: ['#ecfdf3', '#d1fadf', '#a8f2c6', '#6fe6a7', '#36d183', '#12b76a', '#079455', '#057747', '#075e3a', '#074d32'],
+    gray: ['#f6f6f7', '#eef0f1', '#e0e2e5', '#ccd1d5', '#b6bbc3', '#a3a7b1', '#8d919e', '#838691', '#64676f', '#53555c'],
   },
   // other: {
   //   colors: {
