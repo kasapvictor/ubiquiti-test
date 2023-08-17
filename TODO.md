@@ -1,0 +1,8 @@
+- [ ] Header
+- [x] Product view mode
+- [ ] Product row view
+- [ ] Product card view
+- [ ] Product Top Bar
+- [ ] Product Filter
+- [ ] Product Search
+- [ ] Product Details (Modal)

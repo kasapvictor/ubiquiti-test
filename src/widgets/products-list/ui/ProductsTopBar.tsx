@@ -4,7 +4,7 @@ import { IconLayoutGrid, IconList } from '@tabler/icons-react';
 
 import { Box, createStyles, Group, Radio } from '@mantine/core';
 
-import { ProductsViewMode } from './types';
+import { ProductsViewMode } from '@entities/products';
 
 export const ProductsTopBar = ({ viewMode, setViewMode }: ProductsTopBarProps) => {
   const { classes, cx } = useStyles();
@@ -24,6 +24,11 @@ export const ProductsTopBar = ({ viewMode, setViewMode }: ProductsTopBarProps) =
     </Box>
   );
 };
+
+interface ProductsTopBarProps {
+  viewMode: ProductsViewMode;
+  setViewMode: (mode: ProductsViewMode) => void;
+}
 
 const useStyles = createStyles((theme) => {
   return {
@@ -46,8 +51,3 @@ const useStyles = createStyles((theme) => {
     },
   };
 });
-
-interface ProductsTopBarProps {
-  viewMode: ProductsViewMode;
-  setViewMode: (mode: ProductsViewMode) => void;
-}

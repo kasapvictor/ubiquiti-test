@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 export type TResolution = [number, number];
 
 export interface IIcon {
@@ -26,4 +28,9 @@ export interface IDevice {
 export interface QueryDataProps {
   version: string;
   devices: IDevice[];
+}
+
+export enum ProductsViewMode {
+  List = 'list',
+  Grid = 'grid',
 }

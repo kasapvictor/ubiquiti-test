@@ -2,17 +2,12 @@ import { useState } from 'react';
 
 import { Box, createStyles, Text } from '@mantine/core';
 
-import { ProductsTopBar } from '@widgets/products-list/ProductsTopBar';
-
-import { useQueryProducts, Product } from '@entities/products';
+import { useQueryProducts, Product, ProductsViewMode } from '@entities/products';
 
 import { useTranslate } from '@shared/hooks';
 
-import { ProductsViewMode } from './types';
-
-// NOTE
-//  BUILD IMAGE SRC WITH
-//    https://static.ui.com/fingerprint/ui/icons/$(icon.id}_$(size.width)x$ {size. height}.png
+import { buildImageSrc } from './lib';
+import { ProductsTopBar } from './ui';
 
 export const ProductsList = () => {
   const { classes, cx } = useStyles();
@@ -66,7 +61,13 @@ export const ProductsList = () => {
               [classes.productRow]: viewMode === ProductsViewMode.List,
               [classes.productCard]: viewMode === ProductsViewMode.Grid,
             })}>
-            <Product deviceId={device.id} />
+            <Product
+              id={device.id}
+              line={device.line.name}
+              name={device.product.name}
+              iconSrc={buildImageSrc({ id: device.icon.id, width: device.icon.resolutions[0][0], height: device.icon.resolutions[0][1] })}
+              isRowView={viewMode === ProductsViewMode.List}
+            />
           </Box>
         ))}
       </Box>
@@ -90,6 +91,9 @@ const useStyles = createStyles((theme) => {
       height: '14.5625rem',
     },
     productRow: {
+      // display: 'grid',
+      // gridTemplateColumns: '8.5rem 15.875rem 1fr',
+
       height: 'auto',
       paddingTop: theme.spacing.xs,
       paddingBottom: theme.spacing.xs,
