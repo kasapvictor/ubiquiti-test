@@ -15,7 +15,7 @@ export const ProductsSearch = () => {
     return null;
   }
 
-  const autoCompleteData = products.data.devices.map((device) => device.product.name);
+  const autoCompleteData = products.data.devices.map((device) => device.shortnames).flat();
 
   return (
     <Box className={classes.wrapper}>
