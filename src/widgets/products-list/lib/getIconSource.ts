@@ -1,5 +1,9 @@
 import { ProductsViewMode, TResolution } from '@entities/products';
 
+const SMALL_SIZE = 25;
+const MIDDLE_SIZE = 101;
+const DEFAULT_SIZE = 257;
+
 const URL = 'https://static.ui.com/fingerprint/ui/icons';
 
 export const buildUrl = ({ id, width, height }: { id: string; width: number; height: number }) => {
@@ -7,16 +11,18 @@ export const buildUrl = ({ id, width, height }: { id: string; width: number; hei
 };
 
 export const getIconSource = ({ id, resolutions, mode }: IconSource) => {
+  // FIXME we don't know sizes, need to add some conditions or rewrite
+
   const size = resolutions.find(([width]) => {
     if (mode === ProductsViewMode.List) {
-      return width === 25;
+      return width === SMALL_SIZE;
     }
 
     if (mode === ProductsViewMode.Grid) {
-      return width === 101;
+      return width === MIDDLE_SIZE;
     }
 
-    return width === 257;
+    return width === DEFAULT_SIZE;
   });
 
   const width = size ? size[0] : 0;

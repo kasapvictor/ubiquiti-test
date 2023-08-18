@@ -59,15 +59,15 @@ export const ProductsList = () => {
 
         <Box
           className={cx(classes.products, {
-            [classes.productsList]: isListView,
-            [classes.productsGrid]: !isListView,
+            [classes.list]: isListView,
+            [classes.grid]: !isListView,
           })}>
           {products.data.devices.map((device) => (
             <Box
               key={device.id}
-              className={cx({
-                [classes.productRow]: isListView,
-                [classes.productCard]: !isListView,
+              className={cx(classes.product, {
+                [classes.row]: isListView,
+                [classes.card]: !isListView,
               })}>
               <ProductPreview
                 id={device.id}
@@ -92,23 +92,20 @@ const useStyles = createStyles((theme) => {
     products: {
       display: 'grid',
     },
-    productsList: {},
-    productsGrid: {
+    list: {},
+    grid: {
       gap: '1.5rem',
       gridTemplateColumns: 'repeat(auto-fit, minmax(14.5625rem, 1fr))',
     },
-    productCard: {
-      height: '14.5625rem',
+    product: {
+      transition: 'background-color .2s ease',
     },
-    productRow: {
-      // display: 'grid',
-      // gridTemplateColumns: '8.5rem 15.875rem 1fr',
-
+    row: {
       height: 'auto',
       paddingTop: theme.spacing.xs,
       paddingBottom: theme.spacing.xs,
       borderTop: `1px solid ${theme.colors.gray[1]}`,
-      transition: 'background-color .2s ease',
+
       cursor: 'pointer',
       '&:last-child': {
         borderBottom: `1px solid ${theme.colors.gray[1]}`,
@@ -116,6 +113,9 @@ const useStyles = createStyles((theme) => {
       '&:hover': {
         backgroundColor: theme.colors.gray[0],
       },
+    },
+    card: {
+      height: '14.5625rem',
     },
   };
 });
