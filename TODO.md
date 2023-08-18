@@ -1,4 +1,4 @@
-- [ ] Header
+- [x] Header
 - [x] Product view mode
 - [x] Product row view
 - [ ] Product card view

@@ -3,7 +3,7 @@
 import { IconLayoutGrid, IconList } from '@tabler/icons-react';
 import { useStore } from 'effector-react';
 
-import { Box, createStyles, Group, Radio } from '@mantine/core';
+import { Box, createStyles, Flex, Group, Radio, Text } from '@mantine/core';
 
 import { $viewMode, setViewMode, ProductsViewMode } from '@entities/products/model';
 
@@ -13,23 +13,30 @@ export const ProductsTopBar = () => {
   const viewMode = useStore($viewMode);
 
   return (
-    <Box>
-      <Radio.Group
-        value={viewMode}
-        onChange={(value) => {
-          setViewMode(value as ProductsViewMode);
-        }}>
-        <Group spacing="lg">
-          <Radio className={cx(classes.radio)} value={ProductsViewMode.List} label={<IconList size="1.3rem" />} />
-          <Radio className={cx(classes.radio)} value={ProductsViewMode.Grid} label={<IconLayoutGrid size="1.3rem" />} />
+    <Box className={classes.topBar}>
+      <Flex align="center" h="100%" pr={28} pl={28} justify="space-between">
+        <Text>Search</Text>
+        <Group>
+          <Radio.Group value={viewMode} onChange={(value) => setViewMode(value as ProductsViewMode)}>
+            <Group spacing="lg">
+              <Radio className={cx(classes.radio)} value={ProductsViewMode.List} label={<IconList size="1.3rem" />} />
+              <Radio className={cx(classes.radio)} value={ProductsViewMode.Grid} label={<IconLayoutGrid size="1.3rem" />} />
+            </Group>
+          </Radio.Group>
+          <Text>Filter</Text>
         </Group>
-      </Radio.Group>
+      </Flex>
     </Box>
   );
 };
 
 const useStyles = createStyles((theme) => {
   return {
+    topBar: {
+      height: theme.spacing['56'],
+      borderTop: `1px solid ${theme.colors.gray[1]}`,
+      borderBottom: `1px solid ${theme.colors.gray[1]}`,
+    },
     radio: {
       '.mantine-Radio-labelWrapper': {
         borderRadius: theme.radius.sm,

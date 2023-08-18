@@ -23,7 +23,7 @@ export const ProductsList = () => {
   // Loading
   if (products.isLoading) {
     return (
-      <Box>
+      <Box p={56}>
         <Text>{tBase('loading')}</Text>
       </Box>
     );
@@ -32,7 +32,7 @@ export const ProductsList = () => {
   // Empty data
   if (!products.data) {
     return (
-      <Box>
+      <Box p={56}>
         <Text>{tBase('no-content')}</Text>
       </Box>
     );
@@ -41,7 +41,7 @@ export const ProductsList = () => {
   // Error
   if (products.isError) {
     return (
-      <Box>
+      <Box p={56}>
         <Text>{products.error}</Text>
       </Box>
     );

@@ -9,7 +9,7 @@ export const Header = () => {
     <Box className={classes.header} component="header">
       <Flex align="center">
         <Logo />
-        <Group position="apart" w="100%" pr="28" pl="28">
+        <Group position="apart" w="100%" pr={28} pl={28}>
           <Text fz="xl">Devices</Text>
           <Text>
             Author |{' '}
