@@ -22,16 +22,26 @@ export const ProductPreview = ({ iconResolutions, iconId, line, name, id }: Prod
       <Image
         alt={name}
         src={iconSrc}
-        withPlaceholder
+        height="100%"
+        fit="contain"
         className={cx(classes.image, { [classes.imageRow]: isListView, [classes.imageCard]: !isListView })}
       />
-      <Text>{line}</Text>
-      <Text>{name}</Text>
+      <Text
+        pb={isListView ? 0 : 4}
+        pt={isListView ? 0 : 'lg'}
+        pl={isListView ? 0 : 'sm'}
+        pr={isListView ? 0 : 'sm'}
+        className={cx({ [classes.nameCard]: !isListView })}>
+        {isListView ? line : name}
+      </Text>
+      <Text color={!isListView ? 'dimmed' : ''} pl={isListView ? 0 : 'sm'} pb={isListView ? 0 : 'md'} size={isListView ? 'md' : 'sm'}>
+        {!isListView ? line : name}
+      </Text>
     </Box>
   );
 };
 
-const useStyles = createStyles(() => {
+const useStyles = createStyles((theme) => {
   return {
     product: {},
     productRow: {
@@ -41,6 +51,7 @@ const useStyles = createStyles(() => {
     },
     productCard: {
       display: 'grid',
+      height: '100%',
     },
     image: {},
     imageRow: {
@@ -51,7 +62,23 @@ const useStyles = createStyles(() => {
         marginLeft: 'auto',
       },
     },
-    imageCard: {},
+    imageCard: {
+      backgroundColor: theme.colors.gray[0],
+      figure: {
+        width: '14.5rem',
+        height: '9rem',
+        margin: '0 auto',
+        '.mantine-Image-imageWrapper': {
+          width: '100%',
+          height: '100%',
+        },
+      },
+    },
+    nameCard: {
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+    },
   };
 });
 

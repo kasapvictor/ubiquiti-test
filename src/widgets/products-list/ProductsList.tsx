@@ -95,7 +95,8 @@ const useStyles = createStyles((theme) => {
       gridTemplateColumns: 'repeat(auto-fit, minmax(14.5625rem, 1fr))',
     },
     product: {
-      transition: 'background-color .2s ease',
+      cursor: 'pointer',
+      transition: 'background-color .2s ease, box-shadow .2s ease',
     },
     row: {
       height: 'auto',
@@ -103,7 +104,6 @@ const useStyles = createStyles((theme) => {
       paddingBottom: theme.spacing.xs,
       borderTop: `1px solid ${theme.colors.gray[1]}`,
 
-      cursor: 'pointer',
       '&:last-child': {
         borderBottom: `1px solid ${theme.colors.gray[1]}`,
       },
@@ -113,6 +113,12 @@ const useStyles = createStyles((theme) => {
     },
     card: {
       height: '14.5625rem',
+      overflow: 'hidden',
+      borderRadius: theme.radius.md,
+      border: `1px solid ${theme.colors.gray[3]}`,
+      '&:hover': {
+        boxShadow: theme.shadows.xl,
+      },
     },
   };
 });
