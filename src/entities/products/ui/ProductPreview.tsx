@@ -2,14 +2,19 @@ import { Box, Text, createStyles, Image } from '@mantine/core';
 
 import { log } from '@shared/lib';
 
-export const Product = ({ iconSrc, line, name, id, isRowView }: ProductProps) => {
+export const ProductPreview = ({ iconSrc, line, name, id, isListView }: ProductProps) => {
   const { classes, cx } = useStyles();
 
   log({ iconSrc, line, name, id });
 
   return (
-    <Box className={cx(classes.product, { [classes.productRow]: isRowView, [classes.productCard]: !isRowView })}>
-      <Image className={cx(classes.image, { [classes.imageRow]: isRowView, [classes.imageCard]: !isRowView })} alt={name} src={iconSrc} />
+    <Box className={cx(classes.product, { [classes.productRow]: isListView, [classes.productCard]: !isListView })}>
+      <Image
+        alt={name}
+        src={iconSrc}
+        withPlaceholder
+        className={cx(classes.image, { [classes.imageRow]: isListView, [classes.imageCard]: !isListView })}
+      />
       <Text>{line}</Text>
       <Text>{name}</Text>
     </Box>
@@ -22,6 +27,7 @@ const useStyles = createStyles(() => {
     productRow: {
       display: 'grid',
       gridTemplateColumns: '8.5rem 15.875rem 1fr',
+      alignItems: 'center',
     },
     productCard: {
       display: 'grid',
@@ -44,5 +50,5 @@ interface ProductProps {
   iconSrc: string;
   line: string;
   name: string;
-  isRowView: boolean;
+  isListView: boolean;
 }

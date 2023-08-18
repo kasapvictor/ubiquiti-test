@@ -2,12 +2,13 @@ import { useState } from 'react';
 
 import { Box, createStyles, Text } from '@mantine/core';
 
-import { useQueryProducts, Product, ProductsViewMode } from '@entities/products';
+import { useQueryProducts, ProductPreview, ProductsViewMode } from '@entities/products';
 
 import { useTranslate } from '@shared/hooks';
+import { log } from '@shared/lib';
 
-import { buildImageSrc } from './lib';
-import { ProductsTopBar } from './ui';
+import { getIconSource } from './lib';
+import { ListTopRow, ProductsTopBar } from './ui';
 
 export const ProductsList = () => {
   const { classes, cx } = useStyles();
@@ -17,6 +18,10 @@ export const ProductsList = () => {
   const [viewMode, setViewMode] = useState(ProductsViewMode.List);
 
   const products = useQueryProducts();
+
+  log('viewMode', viewMode);
+
+  const isListView = viewMode === ProductsViewMode.List;
 
   // Loading
   if (products.isLoading) {
@@ -49,27 +54,31 @@ export const ProductsList = () => {
     <Box>
       <ProductsTopBar viewMode={viewMode} setViewMode={setViewMode} />
 
-      <Box
-        className={cx(classes.products, {
-          [classes.productsList]: viewMode === ProductsViewMode.List,
-          [classes.productsGrid]: viewMode === ProductsViewMode.Grid,
-        })}>
-        {products.data.devices.map((device) => (
-          <Box
-            key={device.id}
-            className={cx({
-              [classes.productRow]: viewMode === ProductsViewMode.List,
-              [classes.productCard]: viewMode === ProductsViewMode.Grid,
-            })}>
-            <Product
-              id={device.id}
-              line={device.line.name}
-              name={device.product.name}
-              iconSrc={buildImageSrc({ id: device.icon.id, width: device.icon.resolutions[0][0], height: device.icon.resolutions[0][1] })}
-              isRowView={viewMode === ProductsViewMode.List}
-            />
-          </Box>
-        ))}
+      <Box className={classes.wrapper}>
+        <ListTopRow count={products.data.devices.length} isListViewMode={isListView} />
+
+        <Box
+          className={cx(classes.products, {
+            [classes.productsList]: isListView,
+            [classes.productsGrid]: !isListView,
+          })}>
+          {products.data.devices.map((device) => (
+            <Box
+              key={device.id}
+              className={cx({
+                [classes.productRow]: isListView,
+                [classes.productCard]: !isListView,
+              })}>
+              <ProductPreview
+                id={device.id}
+                isListView={isListView}
+                line={device.line.name}
+                name={device.product.name}
+                iconSrc={getIconSource({ id: device.icon.id, resolutions: device.icon.resolutions, mode: viewMode })}
+              />
+            </Box>
+          ))}
+        </Box>
       </Box>
     </Box>
   );
@@ -77,10 +86,11 @@ export const ProductsList = () => {
 
 const useStyles = createStyles((theme) => {
   return {
+    wrapper: {
+      padding: `${theme.spacing.xl} 5rem`,
+    },
     products: {
       display: 'grid',
-      paddingLeft: '3.59rem',
-      paddingRight: '3.59rem',
     },
     productsList: {},
     productsGrid: {
@@ -98,7 +108,14 @@ const useStyles = createStyles((theme) => {
       paddingTop: theme.spacing.xs,
       paddingBottom: theme.spacing.xs,
       borderTop: `1px solid ${theme.colors.gray[1]}`,
-      borderBottom: `1px solid ${theme.colors.gray[1]}`,
+      transition: 'background-color .2s ease',
+      cursor: 'pointer',
+      '&:last-child': {
+        borderBottom: `1px solid ${theme.colors.gray[1]}`,
+      },
+      '&:hover': {
+        backgroundColor: theme.colors.gray[0],
+      },
     },
   };
 });

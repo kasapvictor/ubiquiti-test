@@ -13,5 +13,11 @@
       "description": "=(",
       "link": "Main Page"
     }
+  },
+  "widget": {
+    "products": {
+      "product-line": "Product line",
+      "name": "Name"
+    }
   }
 }

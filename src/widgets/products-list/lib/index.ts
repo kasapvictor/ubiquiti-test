@@ -1,1 +1,1 @@
-export { buildImageSrc } from './buildImageSrc';
+export { getIconSource } from './getIconSource';
