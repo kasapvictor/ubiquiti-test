@@ -1,11 +1,21 @@
-import { Box, Text, createStyles, Image } from '@mantine/core';
+import { useStore } from 'effector-react';
 
-import { log } from '@shared/lib';
+import { Box, createStyles, Image, Text } from '@mantine/core';
 
-export const ProductPreview = ({ iconSrc, line, name, id, isListView }: ProductProps) => {
+import { $viewMode, ProductsViewMode } from '@entities/products/model';
+
+import { getIconSource, IconSize, log } from '@shared/lib';
+
+export const ProductPreview = ({ iconResolutions, iconId, line, name, id }: ProductProps) => {
   const { classes, cx } = useStyles();
 
-  log({ iconSrc, line, name, id });
+  const viewMode = useStore($viewMode);
+  const isListView = viewMode === ProductsViewMode.List;
+
+  const iconSize = isListView ? IconSize.Small : IconSize.Normal;
+  const iconSrc = getIconSource({ iconId, resolutions: iconResolutions, iconSize });
+
+  log({ iconResolutions, line, name, id });
 
   return (
     <Box className={cx(classes.product, { [classes.productRow]: isListView, [classes.productCard]: !isListView })}>
@@ -47,8 +57,8 @@ const useStyles = createStyles(() => {
 
 interface ProductProps {
   id: string;
-  iconSrc: string;
   line: string;
   name: string;
-  isListView: boolean;
+  iconId: string;
+  iconResolutions: [number, number][];
 }

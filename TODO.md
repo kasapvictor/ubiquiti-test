@@ -1,6 +1,6 @@
 - [ ] Header
 - [x] Product view mode
-- [ ] Product row view
+- [x] Product row view
 - [ ] Product card view
 - [ ] Product Top Bar
 - [ ] Product Filter

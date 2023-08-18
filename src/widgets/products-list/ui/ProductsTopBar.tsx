@@ -1,13 +1,16 @@
 /* eslint-disable no-unused-vars */
 
 import { IconLayoutGrid, IconList } from '@tabler/icons-react';
+import { useStore } from 'effector-react';
 
 import { Box, createStyles, Group, Radio } from '@mantine/core';
 
-import { ProductsViewMode } from '@entities/products';
+import { $viewMode, setViewMode, ProductsViewMode } from '@entities/products/model';
 
-export const ProductsTopBar = ({ viewMode, setViewMode }: ProductsTopBarProps) => {
+export const ProductsTopBar = () => {
   const { classes, cx } = useStyles();
+
+  const viewMode = useStore($viewMode);
 
   return (
     <Box>
@@ -24,11 +27,6 @@ export const ProductsTopBar = ({ viewMode, setViewMode }: ProductsTopBarProps) =
     </Box>
   );
 };
-
-interface ProductsTopBarProps {
-  viewMode: ProductsViewMode;
-  setViewMode: (mode: ProductsViewMode) => void;
-}
 
 const useStyles = createStyles((theme) => {
   return {

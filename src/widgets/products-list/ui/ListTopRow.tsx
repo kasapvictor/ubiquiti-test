@@ -1,17 +1,24 @@
+import { useStore } from 'effector-react';
+
 import { Box, createStyles, Text } from '@mantine/core';
+
+import { $viewMode, ProductsViewMode } from '@entities/products/model';
 
 import { useTranslate } from '@shared/hooks';
 
-export const ListTopRow = ({ count, isListViewMode }: { count: number; isListViewMode: boolean }) => {
+export const ListTopRow = ({ count }: { count: number }) => {
   const { classes, cx } = useStyles();
   const { t: tWidgets } = useTranslate({ keyPrefix: 'widget' });
+
+  const viewMode = useStore($viewMode);
+  const isListView = viewMode === ProductsViewMode.List;
 
   return (
     <Box className={cx(classes.topListRow)}>
       <Text ml="auto" pr="2.5rem" color="gray.4">
         {count} Devices
       </Text>
-      {isListViewMode && (
+      {isListView && (
         <>
           <Text transform="uppercase" fw={700}>
             {tWidgets('products.product-line')}

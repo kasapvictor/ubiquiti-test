@@ -1,1 +1,0 @@
-export { getIconSource } from './getIconSource';

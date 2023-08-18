@@ -1,13 +1,12 @@
-import { useState } from 'react';
+import { useStore } from 'effector-react';
 
 import { Box, createStyles, Text } from '@mantine/core';
 
-import { useQueryProducts, ProductPreview, ProductsViewMode } from '@entities/products';
+import { $viewMode, useQueryProducts, ProductsViewMode } from '@entities/products/model';
+import { ProductPreview } from '@entities/products/ui';
 
 import { useTranslate } from '@shared/hooks';
-import { log } from '@shared/lib';
 
-import { getIconSource } from './lib';
 import { ListTopRow, ProductsTopBar } from './ui';
 
 export const ProductsList = () => {
@@ -15,11 +14,9 @@ export const ProductsList = () => {
 
   const { t: tBase } = useTranslate({ keyPrefix: 'base' });
 
-  const [viewMode, setViewMode] = useState(ProductsViewMode.List);
+  const viewMode = useStore($viewMode);
 
   const products = useQueryProducts();
-
-  log('viewMode', viewMode);
 
   const isListView = viewMode === ProductsViewMode.List;
 
@@ -52,10 +49,10 @@ export const ProductsList = () => {
 
   return (
     <Box>
-      <ProductsTopBar viewMode={viewMode} setViewMode={setViewMode} />
+      <ProductsTopBar />
 
       <Box className={classes.wrapper}>
-        <ListTopRow count={products.data.devices.length} isListViewMode={isListView} />
+        <ListTopRow count={products.data.devices.length} />
 
         <Box
           className={cx(classes.products, {
@@ -71,10 +68,10 @@ export const ProductsList = () => {
               })}>
               <ProductPreview
                 id={device.id}
-                isListView={isListView}
                 line={device.line.name}
                 name={device.product.name}
-                iconSrc={getIconSource({ id: device.icon.id, resolutions: device.icon.resolutions, mode: viewMode })}
+                iconId={device.icon.id}
+                iconResolutions={device.icon.resolutions}
               />
             </Box>
           ))}
