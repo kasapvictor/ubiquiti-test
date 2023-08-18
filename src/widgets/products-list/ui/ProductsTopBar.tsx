@@ -5,6 +5,8 @@ import { useStore } from 'effector-react';
 
 import { Box, createStyles, Flex, Group, Radio, Text } from '@mantine/core';
 
+import { ProductsSearch } from '@features/products-search';
+
 import { $viewMode, setViewMode, ProductsViewMode } from '@entities/products/model';
 
 export const ProductsTopBar = () => {
@@ -15,7 +17,7 @@ export const ProductsTopBar = () => {
   return (
     <Box className={classes.topBar}>
       <Flex align="center" h="100%" pr={28} pl={28} justify="space-between">
-        <Text>Search</Text>
+        <ProductsSearch />
         <Group>
           <Radio.Group value={viewMode} onChange={(value) => setViewMode(value as ProductsViewMode)}>
             <Group spacing="lg">
@@ -36,6 +38,7 @@ const useStyles = createStyles((theme) => {
       height: theme.spacing['56'],
       borderTop: `1px solid ${theme.colors.gray[1]}`,
       borderBottom: `1px solid ${theme.colors.gray[1]}`,
+      color: theme.colors.gray[7],
     },
     radio: {
       '.mantine-Radio-labelWrapper': {
