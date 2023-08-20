@@ -17,9 +17,11 @@ export const ProductsFilter = ({ products }: ProductsFilterProps) => {
   const lineNames = getLineNames(products);
 
   return (
-    <Menu shadow="lg" trigger="hover" radius="md" position="bottom-end" width="16rem" closeOnItemClick={false} opened={true}>
+    <Menu shadow="lg" trigger="hover" radius="md" position="bottom-end" width="16rem" closeOnItemClick={false}>
       <Menu.Target>
-        <Text className={classes.target}>{tWidget('products.filter')}</Text>
+        <Text className={classes.target}>
+          {tWidget('products.filter')} ({filterBy.length})
+        </Text>
       </Menu.Target>
 
       <Menu.Dropdown>
