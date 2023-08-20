@@ -34,6 +34,8 @@ make build-prod # npx tsc && vite build
 ```
 ---
 
+👀 Preview: <a target="_blank" href="https://ubiquiti-test.vercel.app/">Click</a> 👈
+
 ### Notes
 - [FSD](https://feature-sliced.design/ru/docs/reference/units/layers)
 - [Mantine](https://mantine.dev/guides)
