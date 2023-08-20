@@ -40,10 +40,14 @@ interface ProductsTopBarProps {
 const useStyles = createStyles((theme) => {
   return {
     topBar: {
+      width: '100%',
       height: theme.spacing['56'],
       borderTop: `1px solid ${theme.colors.gray[1]}`,
       borderBottom: `1px solid ${theme.colors.gray[1]}`,
       color: theme.colors.gray[7],
+      position: 'fixed',
+      backgroundColor: theme.white,
+      zIndex: 20,
     },
     radio: {
       '.mantine-Radio-labelWrapper': {

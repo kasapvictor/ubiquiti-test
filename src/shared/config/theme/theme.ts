@@ -3,7 +3,6 @@ import { MantineThemeOverride } from '@mantine/core';
 export const theme: MantineThemeOverride = {
   fontFamily: 'Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
   primaryColor: 'brand',
-  defaultRadius: '1rem',
   cursorType: 'pointer',
   black: '#212529',
   white: '#FFFFFF',

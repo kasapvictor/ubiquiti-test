@@ -2,11 +2,11 @@ import { useStore } from 'effector-react';
 
 import { Box, createStyles, Image, Text } from '@mantine/core';
 
-import { $viewMode, addProductSelectedId, ProductsViewMode } from '@entities/products/model';
+import { $viewMode, ProductsViewMode } from '@entities/products/model';
 
 import { getIconSource, IconSize } from '@shared/lib';
 
-export const ProductPreview = ({ iconResolutions, iconId, line, name, id }: ProductProps) => {
+export const ProductPreview = ({ iconResolutions, iconId, line, name }: ProductProps) => {
   const { classes, cx } = useStyles();
 
   const viewMode = useStore($viewMode);
@@ -20,8 +20,7 @@ export const ProductPreview = ({ iconResolutions, iconId, line, name, id }: Prod
       className={cx(classes.product, {
         [classes.productRow]: isListView,
         [classes.productCard]: !isListView,
-      })}
-      onClick={() => addProductSelectedId(id)}>
+      })}>
       <Image
         alt={name}
         src={iconSrc}
@@ -86,7 +85,6 @@ const useStyles = createStyles((theme) => {
 });
 
 interface ProductProps {
-  id: string;
   line: string;
   name: string;
   iconId: string;

@@ -26,11 +26,12 @@ export const Header = () => {
 const useStyles = createStyles((theme) => {
   return {
     header: {
-      minHeight: theme.spacing['56'],
+      width: '100%',
       backgroundColor: theme.colors.gray[0],
       color: theme.colors.gray[8],
-      position: 'relative',
+      position: 'fixed',
       zIndex: 999999,
+      top: 0,
     },
   };
 });

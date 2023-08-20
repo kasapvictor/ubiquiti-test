@@ -6,6 +6,7 @@ import { Box, createStyles, Text } from '@mantine/core';
 
 import { $filterBy, $searchQuery, $viewMode, IDevice, ProductsViewMode } from '@entities/products/model';
 import { ProductPreview } from '@entities/products/ui';
+import { ProductDetails } from '@entities/products/ui/ProductDetails';
 
 import { useTranslate } from '@shared/hooks';
 
@@ -38,17 +39,20 @@ export const ProductsList = ({ products }: ProductsListProps) => {
               [classes.row]: isListView,
               [classes.card]: !isListView,
             })}>
-            <ProductPreview
-              id={device.id}
-              iconId={device.icon.id}
-              line={device.line.name}
-              name={device.product.name}
-              iconResolutions={device.icon.resolutions}
-            />
+            <ProductDetails device={device}>
+              <ProductPreview
+                iconId={device.icon.id}
+                line={device.line.name}
+                name={device.product.name}
+                iconResolutions={device.icon.resolutions}
+              />
+            </ProductDetails>
           </Box>
         ))
       ) : (
-        <Text pl="sm">{tWidget('products.not-found')}</Text>
+        <Text pt="3.5rem" pl="sm">
+          {tWidget('products.not-found')}
+        </Text>
       )}
     </Suspense>
   );
@@ -89,7 +93,9 @@ const useStyles = createStyles((theme) => {
       paddingTop: theme.spacing.xs,
       paddingBottom: theme.spacing.xs,
       borderTop: `1px solid ${theme.colors.gray[1]}`,
-
+      '&:first-child': {
+        borderTop: 'none',
+      },
       '&:last-child': {
         borderBottom: `1px solid ${theme.colors.gray[1]}`,
       },

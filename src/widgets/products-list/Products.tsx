@@ -22,7 +22,7 @@ export const Products = () => {
   // Loading
   if (productsQuery.isLoading) {
     return (
-      <Box p={56}>
+      <Box p="5rem">
         <Text>{tBase('loading')}</Text>
       </Box>
     );
@@ -31,7 +31,7 @@ export const Products = () => {
   // Empty data
   if (!productsQuery.data) {
     return (
-      <Box p={56}>
+      <Box p="5rem">
         <Text>{tBase('no-content')}</Text>
       </Box>
     );
@@ -40,17 +40,17 @@ export const Products = () => {
   // Error
   if (productsQuery.isError) {
     return (
-      <Box p={56}>
+      <Box p="5rem">
         <Text>{productsQuery.error}</Text>
       </Box>
     );
   }
 
   return (
-    <Box>
+    <Box pt="3.35rem">
       <ProductsTopBar products={productsQuery.data.devices} />
 
-      <Box className={classes.wrapper}>
+      <Box className={classes.listWrapper}>
         <TopRowOfList count={productsQuery.data.devices.length} />
 
         <Box
@@ -65,16 +65,18 @@ export const Products = () => {
   );
 };
 
-const useStyles = createStyles((theme) => {
+const useStyles = createStyles(() => {
   return {
-    wrapper: {
+    listWrapper: {
+      padding: '3.5rem 5rem 3rem 5rem',
+    },
+    list: {
       margin: '0 auto',
-      padding: `${theme.spacing.xl} 5rem`,
+      paddingTop: '3.5rem',
     },
     products: {
       display: 'grid',
     },
-    list: {},
     grid: {
       gap: '1.5rem',
       gridTemplateColumns: 'repeat(auto-fit, minmax(15rem, max-content))',
