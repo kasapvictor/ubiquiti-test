@@ -2,12 +2,11 @@ import { useStore } from 'effector-react';
 
 import { Box, createStyles, Text } from '@mantine/core';
 
-import { $viewMode, useQueryProducts, ProductsViewMode, $searchQuery } from '@entities/products/model';
-import { ProductPreview } from '@entities/products/ui';
+import { $viewMode, useQueryProducts, ProductsViewMode } from '@entities/products/model';
 
 import { useTranslate } from '@shared/hooks';
 
-import { TopRowOfList, ProductsTopBar } from './ui';
+import { TopRowOfList, ProductsTopBar, ProductsList } from './ui';
 
 export const Products = () => {
   const { classes, cx } = useStyles();
@@ -15,7 +14,6 @@ export const Products = () => {
   const { t: tBase } = useTranslate({ keyPrefix: 'base' });
 
   const viewMode = useStore($viewMode);
-  const searchQuery = useStore($searchQuery);
 
   const productsQuery = useQueryProducts();
 
@@ -48,9 +46,6 @@ export const Products = () => {
     );
   }
 
-  const productsWithSearchQuery = productsQuery.data.devices.filter((device) => device.shortnames.includes(searchQuery));
-  const products = productsWithSearchQuery.length ? productsWithSearchQuery : productsQuery.data.devices;
-
   return (
     <Box>
       <ProductsTopBar />
@@ -63,22 +58,7 @@ export const Products = () => {
             [classes.list]: isListView,
             [classes.grid]: !isListView,
           })}>
-          {products.map((device) => (
-            <Box
-              key={device.id}
-              className={cx(classes.product, {
-                [classes.row]: isListView,
-                [classes.card]: !isListView,
-              })}>
-              <ProductPreview
-                id={device.id}
-                iconId={device.icon.id}
-                line={device.line.name}
-                name={device.product.name}
-                iconResolutions={device.icon.resolutions}
-              />
-            </Box>
-          ))}
+          <ProductsList products={productsQuery.data.devices} />
         </Box>
       </Box>
     </Box>
@@ -98,32 +78,6 @@ const useStyles = createStyles((theme) => {
     grid: {
       gap: '1.5rem',
       gridTemplateColumns: 'repeat(auto-fit, minmax(15rem, max-content))',
-    },
-    product: {
-      cursor: 'pointer',
-      transition: 'background-color .2s ease, box-shadow .2s ease',
-    },
-    row: {
-      height: 'auto',
-      paddingTop: theme.spacing.xs,
-      paddingBottom: theme.spacing.xs,
-      borderTop: `1px solid ${theme.colors.gray[1]}`,
-
-      '&:last-child': {
-        borderBottom: `1px solid ${theme.colors.gray[1]}`,
-      },
-      '&:hover': {
-        backgroundColor: theme.colors.gray[0],
-      },
-    },
-    card: {
-      height: '14.5625rem',
-      overflow: 'hidden',
-      borderRadius: theme.radius.md,
-      border: `1px solid ${theme.colors.gray[3]}`,
-      '&:hover': {
-        boxShadow: theme.shadows.xl,
-      },
     },
   };
 });

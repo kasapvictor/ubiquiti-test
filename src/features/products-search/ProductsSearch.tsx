@@ -1,7 +1,7 @@
 import { IconSearch, IconX } from '@tabler/icons-react';
 import { useStore } from 'effector-react';
 
-import { ActionIcon, Autocomplete, Box, createStyles } from '@mantine/core';
+import { ActionIcon, Box, createStyles, TextInput } from '@mantine/core';
 
 import { $searchQuery, setQuerySearch, useQueryProducts } from '@entities/products/model';
 
@@ -20,25 +20,20 @@ export const ProductsSearch = () => {
     return null;
   }
 
-  const autoCompleteData = products.data.devices.map((device) => device.shortnames).flat();
-
   return (
     <Box className={classes.wrapper}>
-      <Autocomplete
+      <TextInput
         name="q"
         radius="md"
         type="search"
         value={searchQuery}
-        data={autoCompleteData}
-        maxDropdownHeight="25rem"
-        className={classes.autocomplete}
+        className={classes.search}
         icon={<IconSearch size="1rem" />}
-        limit={products.data.devices.length}
-        onChange={(query) => setQuerySearch(query)}
         placeholder={tWidget('products.search-placeholder')}
+        onChange={(e) => setQuerySearch(e.target.value)}
       />
       {searchQuery && (
-        <ActionIcon className={classes.clear} onClick={() => setQuerySearch('')} variant="transparent">
+        <ActionIcon className={classes.clear} variant="transparent" onClick={() => setQuerySearch('')}>
           <IconX size="1rem" />
         </ActionIcon>
       )}
@@ -51,7 +46,7 @@ const useStyles = createStyles((theme) => {
     wrapper: {
       position: 'relative',
     },
-    autocomplete: {
+    search: {
       width: '21.5rem',
       input: {
         border: 'none',
