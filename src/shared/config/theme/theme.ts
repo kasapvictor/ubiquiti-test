@@ -23,7 +23,7 @@ export const theme: MantineThemeOverride = {
     '56': '3.5rem',
   },
   colors: {
-    brand: ['#EDF2FF', '#DBE4FF', '#BAC8FF', '#91A7FF', '#748FFC', '#5C7CFA', '#4C6EF5', '#4263EB', '#3B5BDB', '#364FC7'],
+    brand: ['#edf9ff', '#d6f0ff', '#b5e7ff', '#83d9ff', '#48c3ff', '#1ea2ff', '#0683ff', '#006fff', '#0855c5', '#0d4b9b'],
     gray: ['#f6f6f7', '#eef0f1', '#e0e2e5', '#ccd1d5', '#b6bbc3', '#a3a7b1', '#8d919e', '#838691', '#64676f', '#53555c'],
   },
   // other: {

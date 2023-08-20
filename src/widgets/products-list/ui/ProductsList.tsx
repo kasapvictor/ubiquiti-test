@@ -88,7 +88,7 @@ const useStyles = createStyles((theme) => {
       height: '14.5625rem',
       overflow: 'hidden',
       borderRadius: theme.radius.md,
-      border: `1px solid ${theme.colors.gray[3]}`,
+      border: `1px solid ${theme.colors.gray[2]}`,
       '&:hover': {
         boxShadow: theme.shadows.xl,
       },

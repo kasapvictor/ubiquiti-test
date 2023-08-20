@@ -1,11 +1,12 @@
-import { IconSearch, IconX } from '@tabler/icons-react';
+import { IconSearch } from '@tabler/icons-react';
 import { useStore } from 'effector-react';
 
-import { ActionIcon, Box, createStyles, TextInput } from '@mantine/core';
+import { Box, createStyles, TextInput } from '@mantine/core';
 
 import { $searchQuery, setQuerySearch, useQueryProducts } from '@entities/products/model';
 
 import { useTranslate } from '@shared/hooks';
+import { CloseClearButton } from '@shared/ui';
 
 export const ProductsSearch = () => {
   const { classes } = useStyles();
@@ -33,9 +34,9 @@ export const ProductsSearch = () => {
         onChange={(e) => setQuerySearch(e.target.value)}
       />
       {searchQuery && (
-        <ActionIcon className={classes.clear} variant="transparent" onClick={() => setQuerySearch('')}>
-          <IconX size="1rem" />
-        </ActionIcon>
+        <Box className={classes.clearWrapper}>
+          <CloseClearButton onClick={() => setQuerySearch('')} />
+        </Box>
       )}
     </Box>
   );
@@ -66,18 +67,12 @@ const useStyles = createStyles((theme) => {
         borderRadius: theme.radius.sm,
       },
     },
-    clear: {
+    clearWrapper: {
       position: 'absolute',
       top: '50%',
       right: theme.spacing['4'],
       color: theme.colors.gray[5],
       transform: 'translateY(-50%)',
-      '&:hover': {
-        color: theme.colors.gray[5],
-      },
-      '&:active': {
-        transform: 'translateY(-47%)',
-      },
     },
   };
 });

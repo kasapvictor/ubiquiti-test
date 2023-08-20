@@ -3,18 +3,15 @@
 import { IconLayoutGrid, IconList } from '@tabler/icons-react';
 import { useStore } from 'effector-react';
 
-import { Box, createStyles, Flex, Group, Radio, Text } from '@mantine/core';
+import { Box, createStyles, Flex, Group, Radio } from '@mantine/core';
 
+import { ProductsFilter } from '@features/products-filter/ProductsFilter';
 import { ProductsSearch } from '@features/products-search';
 
-import { $viewMode, setViewMode, ProductsViewMode } from '@entities/products/model';
+import { $viewMode, setViewMode, ProductsViewMode, IDevice } from '@entities/products/model';
 
-import { useTranslate } from '@shared/hooks';
-
-export const ProductsTopBar = () => {
+export const ProductsTopBar = ({ products }: ProductsTopBarProps) => {
   const { classes, cx } = useStyles();
-
-  const { t: tWidget } = useTranslate({ keyPrefix: 'widget' });
 
   const viewMode = useStore($viewMode);
 
@@ -29,12 +26,16 @@ export const ProductsTopBar = () => {
               <Radio className={cx(classes.radio)} value={ProductsViewMode.Grid} label={<IconLayoutGrid size="1.3rem" />} />
             </Group>
           </Radio.Group>
-          <Text>{tWidget('products.filter')}</Text>
+          <ProductsFilter products={products} />
         </Group>
       </Flex>
     </Box>
   );
 };
+
+interface ProductsTopBarProps {
+  products: IDevice[];
+}
 
 const useStyles = createStyles((theme) => {
   return {

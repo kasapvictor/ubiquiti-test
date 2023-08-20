@@ -48,7 +48,7 @@ export const Products = () => {
 
   return (
     <Box>
-      <ProductsTopBar />
+      <ProductsTopBar products={productsQuery.data.devices} />
 
       <Box className={classes.wrapper}>
         <TopRowOfList count={productsQuery.data.devices.length} />

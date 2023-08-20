@@ -2,7 +2,8 @@
   "base": {
     "loading": "Loading...",
     "no-content": "No content",
-    "search": "Search..."
+    "search": "Search...",
+    "clear": "Clear"
   },
   "page":{
     "home": {
