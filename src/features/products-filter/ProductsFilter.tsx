@@ -14,7 +14,6 @@ export const ProductsFilter = ({ products }: ProductsFilterProps) => {
   const { t: tBase } = useTranslate({ keyPrefix: 'base' });
 
   const filterBy = useStore($filterBy);
-
   const lineNames = getLineNames(products);
 
   return (
