@@ -7,9 +7,9 @@ import { ProductPreview } from '@entities/products/ui';
 
 import { useTranslate } from '@shared/hooks';
 
-import { ListTopRow, ProductsTopBar } from './ui';
+import { TopRowOfList, ProductsTopBar } from './ui';
 
-export const ProductsList = () => {
+export const Products = () => {
   const { classes, cx } = useStyles();
 
   const { t: tBase } = useTranslate({ keyPrefix: 'base' });
@@ -56,7 +56,7 @@ export const ProductsList = () => {
       <ProductsTopBar />
 
       <Box className={classes.wrapper}>
-        <ListTopRow count={productsQuery.data.devices.length} />
+        <TopRowOfList count={productsQuery.data.devices.length} />
 
         <Box
           className={cx(classes.products, {
@@ -88,6 +88,7 @@ export const ProductsList = () => {
 const useStyles = createStyles((theme) => {
   return {
     wrapper: {
+      margin: '0 auto',
       padding: `${theme.spacing.xl} 5rem`,
     },
     products: {
@@ -96,7 +97,7 @@ const useStyles = createStyles((theme) => {
     list: {},
     grid: {
       gap: '1.5rem',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(14.5625rem, 1fr))',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(15rem, max-content))',
     },
     product: {
       cursor: 'pointer',

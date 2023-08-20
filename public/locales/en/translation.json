@@ -17,7 +17,10 @@
   "widget": {
     "products": {
       "product-line": "Product line",
-      "name": "Name"
+      "name": "Name",
+      "search-placeholder": "Search",
+      "filter": "Filter",
+      "devices": "{{count}} Devices"
     }
   }
 }

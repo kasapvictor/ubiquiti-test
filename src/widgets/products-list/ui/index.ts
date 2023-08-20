@@ -1,2 +1,2 @@
 export { ProductsTopBar } from './ProductsTopBar';
-export { ListTopRow } from './ListTopRow';
+export { TopRowOfList } from './TopRowOfList';

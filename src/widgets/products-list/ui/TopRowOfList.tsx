@@ -6,9 +6,9 @@ import { $viewMode, ProductsViewMode } from '@entities/products/model';
 
 import { useTranslate } from '@shared/hooks';
 
-export const ListTopRow = ({ count }: { count: number }) => {
+export const TopRowOfList = ({ count }: { count: number }) => {
   const { classes, cx } = useStyles();
-  const { t: tWidgets } = useTranslate({ keyPrefix: 'widget' });
+  const { t: tWidget } = useTranslate({ keyPrefix: 'widget' });
 
   const viewMode = useStore($viewMode);
   const isListView = viewMode === ProductsViewMode.List;
@@ -16,15 +16,15 @@ export const ListTopRow = ({ count }: { count: number }) => {
   return (
     <Box className={cx(classes.topListRow)}>
       <Text ml="auto" pr="2.5rem" color="gray.4">
-        {count} Devices
+        {tWidget('products.devices', { count: String(count) })}
       </Text>
       {isListView && (
         <>
           <Text transform="uppercase" fw={700}>
-            {tWidgets('products.product-line')}
+            {tWidget('products.product-line')}
           </Text>
           <Text transform="uppercase" fw={700}>
-            {tWidgets('products.name')}
+            {tWidget('products.name')}
           </Text>
         </>
       )}

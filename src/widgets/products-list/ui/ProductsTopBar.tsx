@@ -9,14 +9,18 @@ import { ProductsSearch } from '@features/products-search';
 
 import { $viewMode, setViewMode, ProductsViewMode } from '@entities/products/model';
 
+import { useTranslate } from '@shared/hooks';
+
 export const ProductsTopBar = () => {
   const { classes, cx } = useStyles();
+
+  const { t: tWidget } = useTranslate({ keyPrefix: 'widget' });
 
   const viewMode = useStore($viewMode);
 
   return (
     <Box className={classes.topBar}>
-      <Flex align="center" h="100%" pr={28} pl={28} justify="space-between">
+      <Flex align="center" h="100%" pr={80} pl={80} justify="space-between">
         <ProductsSearch />
         <Group>
           <Radio.Group value={viewMode} onChange={(value) => setViewMode(value as ProductsViewMode)}>
@@ -25,7 +29,7 @@ export const ProductsTopBar = () => {
               <Radio className={cx(classes.radio)} value={ProductsViewMode.Grid} label={<IconLayoutGrid size="1.3rem" />} />
             </Group>
           </Radio.Group>
-          <Text>Filter</Text>
+          <Text>{tWidget('products.filter')}</Text>
         </Group>
       </Flex>
     </Box>

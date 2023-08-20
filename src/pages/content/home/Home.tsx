@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { ProductsList } from '@widgets/products-list';
+import { Products } from '@widgets/products-list';
 
 const Home = () => {
-  return <ProductsList />;
+  return <Products />;
 };
 
 export default Home;

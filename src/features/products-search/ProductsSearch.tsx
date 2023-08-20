@@ -5,11 +5,14 @@ import { ActionIcon, Autocomplete, Box, createStyles } from '@mantine/core';
 
 import { $searchQuery, setQuerySearch, useQueryProducts } from '@entities/products/model';
 
+import { useTranslate } from '@shared/hooks';
+
 export const ProductsSearch = () => {
   const { classes } = useStyles();
-  const searchQuery = useStore($searchQuery);
 
-  // FIXME add useDeferredValue
+  const { t: tWidget } = useTranslate({ keyPrefix: 'widget' });
+
+  const searchQuery = useStore($searchQuery);
 
   const products = useQueryProducts();
 
@@ -26,17 +29,19 @@ export const ProductsSearch = () => {
         radius="md"
         type="search"
         value={searchQuery}
-        placeholder="Search"
         data={autoCompleteData}
         maxDropdownHeight="25rem"
         className={classes.autocomplete}
         icon={<IconSearch size="1rem" />}
         limit={products.data.devices.length}
         onChange={(query) => setQuerySearch(query)}
+        placeholder={tWidget('products.search-placeholder')}
       />
-      <ActionIcon className={classes.clear} onClick={() => setQuerySearch('')} variant="transparent">
-        <IconX size="1rem" />
-      </ActionIcon>
+      {searchQuery && (
+        <ActionIcon className={classes.clear} onClick={() => setQuerySearch('')} variant="transparent">
+          <IconX size="1rem" />
+        </ActionIcon>
+      )}
     </Box>
   );
 };
