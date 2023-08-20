@@ -9,6 +9,8 @@ export const ProductsSearch = () => {
   const { classes } = useStyles();
   const searchQuery = useStore($searchQuery);
 
+  // FIXME add useDeferredValue
+
   const products = useQueryProducts();
 
   if (!products.data) {
@@ -22,13 +24,14 @@ export const ProductsSearch = () => {
       <Autocomplete
         name="q"
         radius="md"
-        limit={10}
         type="search"
         value={searchQuery}
         placeholder="Search"
         data={autoCompleteData}
+        maxDropdownHeight="25rem"
         className={classes.autocomplete}
         icon={<IconSearch size="1rem" />}
+        limit={products.data.devices.length}
         onChange={(query) => setQuerySearch(query)}
       />
       <ActionIcon className={classes.clear} onClick={() => setQuerySearch('')} variant="transparent">

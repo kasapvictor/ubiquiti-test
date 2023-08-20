@@ -2,7 +2,7 @@ import { useStore } from 'effector-react';
 
 import { Box, createStyles, Text } from '@mantine/core';
 
-import { $viewMode, useQueryProducts, ProductsViewMode } from '@entities/products/model';
+import { $viewMode, useQueryProducts, ProductsViewMode, $searchQuery } from '@entities/products/model';
 import { ProductPreview } from '@entities/products/ui';
 
 import { useTranslate } from '@shared/hooks';
@@ -15,13 +15,14 @@ export const ProductsList = () => {
   const { t: tBase } = useTranslate({ keyPrefix: 'base' });
 
   const viewMode = useStore($viewMode);
+  const searchQuery = useStore($searchQuery);
 
-  const products = useQueryProducts();
+  const productsQuery = useQueryProducts();
 
   const isListView = viewMode === ProductsViewMode.List;
 
   // Loading
-  if (products.isLoading) {
+  if (productsQuery.isLoading) {
     return (
       <Box p={56}>
         <Text>{tBase('loading')}</Text>
@@ -30,7 +31,7 @@ export const ProductsList = () => {
   }
 
   // Empty data
-  if (!products.data) {
+  if (!productsQuery.data) {
     return (
       <Box p={56}>
         <Text>{tBase('no-content')}</Text>
@@ -39,27 +40,30 @@ export const ProductsList = () => {
   }
 
   // Error
-  if (products.isError) {
+  if (productsQuery.isError) {
     return (
       <Box p={56}>
-        <Text>{products.error}</Text>
+        <Text>{productsQuery.error}</Text>
       </Box>
     );
   }
+
+  const productsWithSearchQuery = productsQuery.data.devices.filter((device) => device.shortnames.includes(searchQuery));
+  const products = productsWithSearchQuery.length ? productsWithSearchQuery : productsQuery.data.devices;
 
   return (
     <Box>
       <ProductsTopBar />
 
       <Box className={classes.wrapper}>
-        <ListTopRow count={products.data.devices.length} />
+        <ListTopRow count={productsQuery.data.devices.length} />
 
         <Box
           className={cx(classes.products, {
             [classes.list]: isListView,
             [classes.grid]: !isListView,
           })}>
-          {products.data.devices.map((device) => (
+          {products.map((device) => (
             <Box
               key={device.id}
               className={cx(classes.product, {
@@ -68,9 +72,9 @@ export const ProductsList = () => {
               })}>
               <ProductPreview
                 id={device.id}
+                iconId={device.icon.id}
                 line={device.line.name}
                 name={device.product.name}
-                iconId={device.icon.id}
                 iconResolutions={device.icon.resolutions}
               />
             </Box>
