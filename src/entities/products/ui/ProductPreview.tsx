@@ -4,9 +4,9 @@ import { Box, createStyles, Image, Text } from '@mantine/core';
 
 import { $viewMode, ProductsViewMode } from '@entities/products/model';
 
-import { getIconSource, IconSize, log } from '@shared/lib';
+import { getIconSource, IconSize } from '@shared/lib';
 
-export const ProductPreview = ({ iconResolutions, iconId, line, name, id }: ProductProps) => {
+export const ProductPreview = ({ iconResolutions, iconId, line, name }: ProductProps) => {
   const { classes, cx } = useStyles();
 
   const viewMode = useStore($viewMode);
@@ -14,8 +14,6 @@ export const ProductPreview = ({ iconResolutions, iconId, line, name, id }: Prod
 
   const iconSize = isListView ? IconSize.Small : IconSize.Normal;
   const iconSrc = getIconSource({ iconId, resolutions: iconResolutions, iconSize });
-
-  log({ iconResolutions, line, name, id });
 
   return (
     <Box className={cx(classes.product, { [classes.productRow]: isListView, [classes.productCard]: !isListView })}>
@@ -83,7 +81,6 @@ const useStyles = createStyles((theme) => {
 });
 
 interface ProductProps {
-  id: string;
   line: string;
   name: string;
   iconId: string;

@@ -22,7 +22,8 @@
       "name": "Name",
       "search-placeholder": "Search",
       "filter": "Filter",
-      "devices": "{{count}} Devices"
+      "devices": "{{count}} Devices",
+      "not-found": "Products not found =("
     }
   }
 }
