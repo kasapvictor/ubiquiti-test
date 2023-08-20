@@ -39,6 +39,7 @@ export const ProductsList = ({ products }: ProductsListProps) => {
               [classes.card]: !isListView,
             })}>
             <ProductPreview
+              id={device.id}
               iconId={device.icon.id}
               line={device.line.name}
               name={device.product.name}

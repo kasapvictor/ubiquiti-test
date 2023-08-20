@@ -29,6 +29,8 @@ const useStyles = createStyles((theme) => {
       minHeight: theme.spacing['56'],
       backgroundColor: theme.colors.gray[0],
       color: theme.colors.gray[8],
+      position: 'relative',
+      zIndex: 999999,
     },
   };
 });
