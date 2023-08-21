@@ -80,6 +80,7 @@ const useStyles = createStyles(() => {
     grid: {
       gap: '1.5rem',
       gridTemplateColumns: 'repeat(auto-fit, minmax(15rem, max-content))',
+      paddingTop: '5rem',
     },
   };
 });
