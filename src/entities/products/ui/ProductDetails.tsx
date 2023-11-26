@@ -28,8 +28,8 @@ export const ProductDetails = ({ children, device }: ProductDetailsProps) => {
       <Modal className={classes.modal} opened={opened} title={device.product.name} onClose={close} overlayProps={overlay} fullScreen>
         <Flex justify="center" align="center" w="100%" h="100%">
           <Group spacing="2rem">
-            <Image src={iconSrc} width="15rem"></Image>
-            <Flex direction="column" w="25rem">
+            <Image className={classes.image} src={iconSrc} width="15rem"></Image>
+            <Flex direction="column" className={classes.details}>
               <Group position="apart" className={classes.item}>
                 <Text>Product line</Text>
                 <Text>{device.line.name}</Text>
@@ -79,6 +79,19 @@ const useStyles = createStyles((theme) => {
       },
       '.mantine-Modal-body': {
         height: '100%',
+      },
+    },
+    image: {
+      [theme.fn.smallerThan('md')]: {
+        margin: '0 auto',
+      },
+    },
+    details: {
+      width: '25rem',
+      [theme.fn.smallerThan('md')]: {
+        width: '100%',
+        paddingLeft: theme.spacing.md,
+        paddingRight: theme.spacing.md,
       },
     },
     item: {
