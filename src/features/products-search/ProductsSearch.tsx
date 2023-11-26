@@ -1,7 +1,9 @@
+import { useDeferredValue, useEffect, useState } from 'react';
+
 import { IconSearch } from '@tabler/icons-react';
 import { useStore } from 'effector-react';
 
-import { Box, createStyles, TextInput } from '@mantine/core';
+import { Box, createStyles, Loader, TextInput } from '@mantine/core';
 
 import { $searchQuery, setQuerySearch, useQueryProducts } from '@entities/products/model';
 
@@ -10,10 +12,16 @@ import { CloseClearButton } from '@shared/ui';
 
 export const ProductsSearch = () => {
   const { classes } = useStyles();
-
   const { t: tWidget } = useTranslate({ keyPrefix: 'widget' });
 
+  const [query, setQuery] = useState('');
+  const deferredQuery = useDeferredValue(query);
   const searchQuery = useStore($searchQuery);
+  const isStale = query !== deferredQuery;
+
+  useEffect(() => {
+    setQuerySearch(deferredQuery);
+  }, [deferredQuery]);
 
   const products = useQueryProducts();
 
@@ -24,18 +32,20 @@ export const ProductsSearch = () => {
   return (
     <Box className={classes.wrapper}>
       <TextInput
-        name="q"
         radius="md"
         type="search"
-        value={searchQuery}
+        value={query}
         className={classes.search}
         icon={<IconSearch size="1rem" />}
         placeholder={tWidget('products.search-placeholder')}
-        onChange={(e) => setQuerySearch(e.target.value)}
+        rightSection={<>{isStale && <Loader size="xs" color="gray.5" />}</>}
+        onChange={(e) => setQuery(e.currentTarget.value)}
       />
-      {searchQuery && (
-        <Box className={classes.clearWrapper}>
-          <CloseClearButton onClick={() => setQuerySearch('')} />
+
+      {!isStale && searchQuery && (
+        <Box className={classes.right}>
+          {/* {!isStale && <Loader size="xs" />} */}
+          <CloseClearButton onClick={() => setQuery('')} />
         </Box>
       )}
     </Box>
@@ -67,7 +77,7 @@ const useStyles = createStyles((theme) => {
         borderRadius: theme.radius.sm,
       },
     },
-    clearWrapper: {
+    right: {
       position: 'absolute',
       top: '50%',
       right: theme.spacing['4'],
