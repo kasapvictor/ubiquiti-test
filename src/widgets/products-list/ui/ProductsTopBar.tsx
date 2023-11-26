@@ -49,8 +49,10 @@ const useStyles = createStyles((theme) => {
       backgroundColor: theme.white,
       zIndex: 20,
       [theme.fn.smallerThan('md')]: {
-        // padding: '5rem 2rem 5rem 2rem',
-        // backgroundColor: 'blue',
+        top: '3.2rem',
+      },
+      [theme.fn.smallerThan('xs')]: {
+        top: '3rem',
       },
     },
     topBarInner: {

@@ -6,7 +6,7 @@ import { $viewMode, ProductsViewMode } from '@entities/products/model';
 
 import { useTranslate } from '@shared/hooks';
 
-export const TopRowOfList = ({ count }: { count: number }) => {
+export const TopRow = ({ count }: { count: number }) => {
   const { classes, cx } = useStyles();
   const { t: tWidget } = useTranslate({ keyPrefix: 'widget' });
 
@@ -50,6 +50,10 @@ const useStyles = createStyles((theme) => {
       [theme.fn.smallerThan('md')]: {
         left: '1rem',
         right: '1rem',
+        top: '6.5rem',
+      },
+      [theme.fn.smallerThan('xs')]: {
+        display: 'none',
       },
     },
   };

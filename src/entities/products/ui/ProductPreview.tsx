@@ -50,6 +50,10 @@ const useStyles = createStyles((theme) => {
       display: 'grid',
       gridTemplateColumns: '8.5rem 15.875rem 1fr',
       alignItems: 'center',
+
+      [theme.fn.smallerThan('xs')]: {
+        gridTemplateColumns: '3rem 7rem 1fr',
+      },
     },
     productCard: {
       display: 'grid',
@@ -57,7 +61,14 @@ const useStyles = createStyles((theme) => {
     },
     image: {},
     imageRow: {
-      padding: '0.25rem 2.5rem 0.25rem 4.5rem; ',
+      padding: '0.25rem 2.5rem 0.25rem 4.5rem',
+
+      [theme.fn.smallerThan('xs')]: {
+        // padding: '0.25rem 0rem 0.25rem 0rem',
+        padding: 0,
+        paddingRight: '2rem',
+      },
+
       figure: {
         width: '1.625rem',
         height: '1.625rem',

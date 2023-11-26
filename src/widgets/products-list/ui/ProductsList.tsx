@@ -1,4 +1,4 @@
-import { Suspense, useDeferredValue } from 'react';
+import { Suspense } from 'react';
 
 import { useStore } from 'effector-react';
 
@@ -25,8 +25,7 @@ export const ProductsList = ({ products }: ProductsListProps) => {
 
   // 2) filter by search query
   const searchQuery = useStore($searchQuery);
-  const deferredQuery = useDeferredValue(searchQuery);
-  const productsSearched = productsWithSearchQuery(productsFiltered, filteredBy, deferredQuery);
+  const productsSearched = productsWithSearchQuery(productsFiltered, filteredBy, searchQuery);
   const productsBySearch = searchQuery.length >= 3 ? productsSearched : productsFiltered;
 
   return (

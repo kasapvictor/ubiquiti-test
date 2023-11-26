@@ -6,7 +6,7 @@ import { $viewMode, useQueryProducts, ProductsViewMode } from '@entities/product
 
 import { useTranslate } from '@shared/hooks';
 
-import { TopRowOfList, ProductsTopBar, ProductsList } from './ui';
+import { TopRow, ProductsTopBar, ProductsList } from './ui';
 
 export const Products = () => {
   const { classes, cx } = useStyles();
@@ -51,7 +51,7 @@ export const Products = () => {
       <ProductsTopBar products={productsQuery.data.devices} />
 
       <Box className={classes.listWrapper}>
-        <TopRowOfList count={productsQuery.data.devices.length} />
+        <TopRow count={productsQuery.data.devices.length} />
 
         <Box
           className={cx(classes.products, {
@@ -76,10 +76,19 @@ const useStyles = createStyles((theme) => {
       [theme.fn.smallerThan('md')]: {
         padding: '5rem 1rem 5rem 1rem',
       },
+      [theme.fn.smallerThan('xs')]: {
+        paddingTop: 0,
+      },
     },
     list: {
       margin: '0 auto',
       paddingTop: '3.5rem',
+      [theme.fn.smallerThan('md')]: {
+        paddingTop: '2rem',
+      },
+      [theme.fn.smallerThan('xs')]: {
+        paddingTop: '3.5rem',
+      },
     },
     products: {
       display: 'grid',
@@ -87,6 +96,9 @@ const useStyles = createStyles((theme) => {
     grid: {
       gap: '1.5rem',
       gridTemplateColumns: 'repeat(auto-fit, minmax(15rem, max-content))',
+      [theme.fn.smallerThan('xs')]: {
+        gridTemplateColumns: 'repeat(auto-fit, 100%)',
+      },
       paddingTop: '5rem',
     },
   };
