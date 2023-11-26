@@ -47,7 +47,7 @@ export const Products = () => {
   }
 
   return (
-    <Box pt="3.35rem">
+    <Box className={classes.wrapper}>
       <ProductsTopBar products={productsQuery.data.devices} />
 
       <Box className={classes.listWrapper}>
@@ -65,10 +65,17 @@ export const Products = () => {
   );
 };
 
-const useStyles = createStyles(() => {
+const useStyles = createStyles((theme) => {
   return {
+    wrapper: {
+      paddingTop: '3.35rem',
+    },
     listWrapper: {
       padding: '3.5rem 5rem 3rem 5rem',
+
+      [theme.fn.smallerThan('md')]: {
+        padding: '5rem 1rem 5rem 1rem',
+      },
     },
     list: {
       margin: '0 auto',

@@ -47,6 +47,10 @@ const useStyles = createStyles((theme) => {
       right: '5rem',
       backgroundColor: theme.white,
       borderBottom: `1px solid ${theme.colors.gray[1]}`,
+      [theme.fn.smallerThan('md')]: {
+        left: '1rem',
+        right: '1rem',
+      },
     },
   };
 });

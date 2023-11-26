@@ -59,6 +59,11 @@ const useStyles = createStyles((theme) => {
     },
     search: {
       width: '21.5rem',
+
+      [theme.fn.smallerThan('md')]: {
+        width: '12rem',
+      },
+
       input: {
         border: 'none',
         backgroundColor: theme.colors.gray[0],

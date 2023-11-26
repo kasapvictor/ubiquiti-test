@@ -9,7 +9,7 @@ export const Header = () => {
     <Box className={classes.header} component="header">
       <Flex align="center">
         <Logo />
-        <Group position="apart" w="100%" pr={80} pl={28}>
+        <Group className={classes.content} position="apart" w="100%">
           <Text fz="xl">Devices</Text>
           <Text>
             Author |{' '}
@@ -32,6 +32,17 @@ const useStyles = createStyles((theme) => {
       position: 'fixed',
       zIndex: 999999,
       top: 0,
+      borderBottom: `1px solid ${theme.colors.gray[1]}`,
+    },
+    content: {
+      height: '100%',
+      paddingLeft: '1.75rem',
+      paddingRight: '5rem',
+
+      [theme.fn.smallerThan('md')]: {
+        paddingRight: '1rem',
+        paddingLeft: '1rem',
+      },
     },
   };
 });

@@ -17,7 +17,7 @@ export const ProductsTopBar = ({ products }: ProductsTopBarProps) => {
 
   return (
     <Box className={classes.topBar}>
-      <Flex align="center" h="100%" pr={80} pl={80} justify="space-between">
+      <Flex className={classes.topBarInner} align="center" justify="space-between">
         <ProductsSearch />
         <Group>
           <Radio.Group value={viewMode} onChange={(value) => setViewMode(value as ProductsViewMode)}>
@@ -42,12 +42,25 @@ const useStyles = createStyles((theme) => {
     topBar: {
       width: '100%',
       height: theme.spacing['56'],
-      borderTop: `1px solid ${theme.colors.gray[1]}`,
+      // borderTop: `1px solid ${theme.colors.gray[1]}`,
       borderBottom: `1px solid ${theme.colors.gray[1]}`,
       color: theme.colors.gray[7],
       position: 'fixed',
       backgroundColor: theme.white,
       zIndex: 20,
+      [theme.fn.smallerThan('md')]: {
+        // padding: '5rem 2rem 5rem 2rem',
+        // backgroundColor: 'blue',
+      },
+    },
+    topBarInner: {
+      height: '100%',
+      paddingRight: '5rem',
+      paddingLeft: '5rem',
+      [theme.fn.smallerThan('md')]: {
+        paddingRight: '1rem',
+        paddingLeft: '1rem',
+      },
     },
     radio: {
       '.mantine-Radio-labelWrapper': {
